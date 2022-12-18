@@ -48,9 +48,9 @@
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
         @include('partials.navbar')
 
-        <div class="body flex-grow-1 px-3">
+        <div class="body px-3">
             <div class="container-lg">
-                <div class="row">
+                <div class="row d-flex justify-content-center">
                     <div class="col-sm-8 col-lg-10">
                         @yield('content')
                     </div>
