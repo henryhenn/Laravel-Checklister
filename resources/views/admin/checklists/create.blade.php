@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">{{ __('Name') }}</label>
-                        <input type="text" name="name" id="name" placeholder="{{ __('Checklist Name') }}"
+                        <input value="{{ old('name') }}" type="text" name="name" id="name" placeholder="{{ __('Checklist Name') }}"
                             class="form-control @error('name')
                                 is-invalid
                             @enderror">
