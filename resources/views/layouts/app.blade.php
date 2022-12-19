@@ -70,6 +70,10 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <script></script>
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+
+    @yield('scripts')
+
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
 
