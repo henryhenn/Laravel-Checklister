@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{ asset('vendors/simplebar/css/simplebar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendors/simplebar.css') }}">
 
+    @livewireStyles
+
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
@@ -67,6 +69,10 @@
     <script src="{{ asset('vendors/@coreui/utils/js/coreui-utils.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script></script>
+
+    @livewireScripts
+    <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
+
 </body>
 
 </html>
