@@ -8,14 +8,6 @@
         </svg>
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('home') }}">
-                <svg class="nav-icon">
-                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-speedometer') }}"></use>
-                </svg> {{ __('Dashboard') }}
-            </a>
-        </li>
-
         @if (auth()->user()->is_admin)
             <li class="nav-title">{{ __('Admin') }}</li>
 
@@ -61,7 +53,8 @@
             @endforeach
         @endif
 
-        <li class="nav-title">{{ __("Other") }}</li>
+        <li class="nav-title">{{ __('Other') }}</li>
+
         <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault(); 
