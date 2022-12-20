@@ -15,30 +15,22 @@
                 </svg> {{ __('Dashboard') }}
             </a>
         </li>
-        @if (auth()->user()->is_admin)
-            <li class="nav-title">{{ __('Admin') }}</li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.pages.index') }}">
-                    <svg class="nav-icon">
-                        <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
-                    </svg> {{ __('Pages') }}
-                </a>
-            </li>
-        @endif
 
         @if (auth()->user()->is_admin)
+            <li class="nav-title">{{ __('Admin') }}</li>
+
             <li class="nav-title">{{ __('Manage Checklists') }}</li>
 
             @foreach (\App\Models\ChecklistGroup::with('checklists')->get() as $group)
                 <li class="nav-item nav-group show">
-                    <a class="nav-link nav-group-toggle"
-                        href="{{ route('admin.checklist_groups.edit', $group->id) }}">
+                    <a class="nav-link" href="{{ route('admin.checklist_groups.edit', $group->id) }}">
                         <i class="nav-icon cil-puzzle"></i> {{ $group->name }}
                     </a>
                     <ul class="nav-group-items">
                         @foreach ($group->checklists as $checklist)
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.checklist_groups.checklists.edit', [$group, $checklist]) }}">
+                                <a class="nav-link"
+                                    href="{{ route('admin.checklist_groups.checklists.edit', [$group, $checklist]) }}">
                                     <i class="nav-icon cil-puzzle"></i>
                                     {{ $checklist->name }}
                                 </a>
@@ -58,14 +50,29 @@
                     class="nav-link">{{ __('New Checklist Group') }}</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.pages.index') }}">
-                    <svg class="nav-icon">
-                        <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
-                    </svg> {{ __('Pages') }}
-                </a>
-            </li>
+            <li class="nav-title">{{ __('Pages') }}</li>
+
+            @foreach (\App\Models\Page::all() as $page)
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.pages.edit', $page) }}">
+                        <i class="nav-icon cil-puzzle"></i> {{ $page->title }}
+                    </a>
+                </li>
+            @endforeach
         @endif
+
+        <li class="nav-title">{{ __("Other") }}</li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('logout') }}"
+                onclick="event.preventDefault(); 
+                document.getElementById('logout-form').submit()">
+                <svg class="icon me-2">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
+                </svg> {{ __('Logout') }}
+            </a>
+
+            <form action="{{ route('logout') }}" method="post" id="logout-form">@csrf</form>
+        </li>
     </ul>
 
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
