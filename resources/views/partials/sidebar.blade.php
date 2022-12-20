@@ -51,21 +51,13 @@
                     </a>
                 </li>
             @endforeach
+
+            <li class="nav-title">{{ __("Manage Data") }}</li>
+            <li class="nav-item">
+                <a href="{{ route('admin.users.index') }}"
+                    class="nav-link">{{ __('Users') }}</a>
+            </li>
         @endif
-
-        <li class="nav-title">{{ __('Other') }}</li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('logout') }}"
-                onclick="event.preventDefault(); 
-                document.getElementById('logout-form').submit()">
-                <svg class="icon me-2">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                </svg> {{ __('Logout') }}
-            </a>
-
-            <form action="{{ route('logout') }}" method="post" id="logout-form">@csrf</form>
-        </li>
     </ul>
 
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>

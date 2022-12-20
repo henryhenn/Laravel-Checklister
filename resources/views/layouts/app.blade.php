@@ -53,7 +53,7 @@
         <div class="body px-3 pb-5">
             <div class="container-lg">
                 <div class="row d-flex justify-content-center">
-                    <div class="col-sm-8 col-lg-10">
+                    <div class="col-sm-10 col-lg-12">
                         @yield('content')
                     </div>
                 </div>
