@@ -30,6 +30,8 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::get('consultation', [\App\Http\Controllers\PageController::class, 'consultation'])->name('consultation');
 
+    Route::get('checklists/{checklist}', [\App\Http\Controllers\User\ChecklistController::class, 'show'])->name('user.checklist.show');
+
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], function () {
         Route::resource('pages', PageController::class)->only(['edit', 'update']);
 
@@ -39,6 +41,6 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::resource('checklists.tasks', TaskController::class);
         
-        Route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::get('users', [UserController::class, 'index'])->name('users.index'); 
     });
 });
