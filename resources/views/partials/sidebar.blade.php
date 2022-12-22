@@ -13,7 +13,11 @@
 
             <li class="nav-title">{{ __('Manage Checklists') }}</li>
 
-            @foreach (\App\Models\ChecklistGroup::with('checklists')->get() as $group)
+            @foreach (\App\Models\ChecklistGroup::with([
+        'checklists' => function ($query) {
+            $query->whereNull('user_id');
+        },
+    ])->get() as $group)
                 <li class="nav-item nav-group show">
                     <a class="nav-link" href="{{ route('admin.checklist_groups.edit', $group->id) }}">
                         <svg class="nav-icon" alt="CoreUI Logo">

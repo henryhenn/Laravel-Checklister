@@ -11,7 +11,7 @@ class Checklist extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'checklist_group_id', 'user_id', 'checklist_id'];
 
     public function checklist_group(): BelongsTo
     {
