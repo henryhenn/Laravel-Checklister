@@ -13,7 +13,7 @@
 
             <li class="nav-title">{{ __('Manage Checklists') }}</li>
 
-            @foreach (\App\Models\ChecklistGroup::with(['checklists'])->get() as $group)
+            @foreach ($admin_menu as $group)
                 <li class="nav-item nav-group show">
                     <a class="nav-link" href="{{ route('admin.checklist_groups.edit', $group->id) }}">
                         <svg class="nav-icon" alt="CoreUI Logo">
@@ -36,7 +36,8 @@
                         @endforeach
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.checklist_groups.checklists.create', $group) }}" class="nav-link">
+                            <a href="{{ route('admin.checklist_groups.checklists.create', $group) }}" class="nav-link"
+                                style="padding: 1rem .5rem .5rem 76px">
                                 <svg class="nav-icon" alt="CoreUI Logo">
                                     <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-note-add') }}">
                                     </use>
