@@ -23,7 +23,7 @@ Route::redirect('/', 'welcome', 301);
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'save_last_action_timestamp']], function () {
     Route::get('welcome', [\App\Http\Controllers\PageController::class, 'welcome'])->name('welcome');
 
     Route::get('consultation', [\App\Http\Controllers\PageController::class, 'consultation'])->name('consultation');

@@ -13,11 +13,7 @@
 
             <li class="nav-title">{{ __('Manage Checklists') }}</li>
 
-            @foreach (\App\Models\ChecklistGroup::with([
-        'checklists' => function ($query) {
-            $query->whereNull('user_id');
-        },
-    ])->get() as $group)
+            @foreach (\App\Models\ChecklistGroup::with(['checklists'])->get() as $group)
                 <li class="nav-item nav-group show">
                     <a class="nav-link" href="{{ route('admin.checklist_groups.edit', $group->id) }}">
                         <svg class="nav-icon" alt="CoreUI Logo">
@@ -82,17 +78,37 @@
                 </a>
             </li>
         @else
-            @foreach (\App\Models\ChecklistGroup::with('checklists')->get() as $group)
-                <li class="nav-title">{{ $group->name }}</li>
+            @foreach ($user_menu as $group)
+                <li class="nav-title">
+                    {{ $group['name'] }}
+                    @if ($group['is_new'])
+                        <span class="badge badge-sm bg-info ms-auto">
+                            NEW
+                        </span>
+                    @elseif ($group['is_updated'])
+                        <span class="badge badge-sm bg-info ms-auto">
+                            UPDATED
+                        </span>
+                    @endif
+                </li>
 
-                @foreach ($group->checklists as $checklist)
+                @foreach ($group['checklists'] as $checklist)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.checklist.show', $checklist) }}">
+                        <a class="nav-link" href="{{ route('user.checklist.show', $checklist['id']) }}">
                             <svg class="nav-icon" width="118" height="46" alt="CoreUI Logo">
                                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list') }}">
                                 </use>
                             </svg>
-                            {{ $checklist->name }}
+                            {{ $checklist['name'] }}
+                            @if ($checklist['is_new'])
+                                <span class="badge badge-sm bg-info ms-auto">
+                                    NEW
+                                </span>
+                            @elseif ($checklist['is_updated'])
+                                <span class="badge badge-sm bg-info ms-auto">
+                                    UPDATED
+                                </span>
+                            @endif
                         </a>
                     </li>
                 @endforeach
