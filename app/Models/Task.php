@@ -15,5 +15,8 @@ class Task extends Model
         'name',
         'description',
         'position',
+        'user_id',
+        'task_id',
+        'completed_at',
     ];
 }
