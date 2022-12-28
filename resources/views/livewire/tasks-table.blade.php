@@ -1,7 +1,20 @@
-<table class="table table-sm" wire:sortable="updateTaskOrder">
+<table class="table table-sm">
     <tbody>
         @foreach ($tasks as $task)
-            <tr wire:sortable.item="{{ $task->id }}" wire:key="task-{{ $task->id }}">
+            <tr>
+                <td>
+                    {{-- @dd($task) --}}
+                    @if ($task->positon > 1)
+                        <a href="#" wire:click.prevent="task_up({{ $task->id }})">
+                            &uarr;
+                        </a>
+                    @endif
+                    @if ($task->position < $tasks->max('position'))
+                        <a href="#" wire:click.prevent="task_down({{ $task->id }})">
+                            &darr;
+                        </a>
+                    @endif
+                </td>
                 <td>{{ $task->name }}</td>
                 <td>
                     <div class="d-flex">
