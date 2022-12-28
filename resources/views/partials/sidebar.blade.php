@@ -101,6 +101,11 @@
                                 </use>
                             </svg>
                             {{ $checklist['name'] }}
+                            @livewire('completed-tasks-counter', [
+                                'tasks_count' => count($checklist['tasks']),
+                                'completed_tasks' => count($checklist['user_tasks']),
+                                'checklist_id' => $checklist['id'],
+                            ])
                             @if ($checklist['is_new'])
                                 <span class="badge badge-sm bg-info ms-auto">
                                     NEW

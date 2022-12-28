@@ -51,5 +51,7 @@ class ChecklistShow extends Component
                 $user_task->save();
             }
         }
+
+        $this->emit('task_complete', $task_id, $task->checklist_id);
     }
 }
